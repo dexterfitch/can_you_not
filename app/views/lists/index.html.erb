@@ -1,7 +1,11 @@
-<h2>To Don't Lists</h2>
+<% content_for(:title, "Can You Not...?") %>
+
+<h2>To-Don't Lists</h2>
 
 <ul>
   <% @lists.each do |list| %>
-    <li><%= list.name %></li>
+    <li><%= link_to list.name, list_path(list) %></li>
   <% end %>
 </ul>
+
+<p><%= link_to "Make a List", new_list_path %></p>

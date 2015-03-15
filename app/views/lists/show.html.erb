@@ -1,0 +1,10 @@
+<% content_for(:title, "Can You Not | List") %>
+
+<h2><%= @list.name %></h2>
+
+<h4><%= @list.description %></h4>
+
+<p><%= link_to "Edit", edit_list_path(@list) %></p>
+<p><%= link_to "Delete", list_path(@list), :data => {:confirm => "Ya sure?", :method => "delete"} %></p>
+
+<p><%= link_to "Return to To-Don't Lists", lists_path %></p>
