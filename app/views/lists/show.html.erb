@@ -28,7 +28,7 @@
         <%= link_to list_task_path(@list, task), :data => {:confirm => "Ya sure?", :method => "delete"} do %><i class="fa fa-trash-o"></i><% end %>
         <%= form_for [@list, task] do |f| %>
           <%= f.hidden_field :done, :value => true %>
-          <%= f.submit "Done" %>
+          <button type="submit">Done <i class='fa fa-check'></i></button>
         <% end %>
         <!-- How to customize submit? ie FontAwesome, Glyphicons, etc -->
       </li>
@@ -52,7 +52,8 @@
         <%= link_to list_task_path(@list, task), :data => {:confirm => "Ya sure?", :method => "delete"} do %><i class="fa fa-trash-o"></i><% end %>
         <%= form_for [@list, task] do |f| %>
           <%= f.hidden_field :done, :value => false %>
-          <%= f.submit "Oops, Actually Not Done" %>
+          <button type="submit">Oops, Not Done <i class='fa fa-times'></i></button>
+
         <% end %>
       </li>
       <%end%>

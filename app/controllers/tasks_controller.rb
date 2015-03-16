@@ -25,6 +25,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     old_description = @task.description
     if @task.update(task_params)
+      # flash[:notice] = formatted_flash(@task, params[:task][:done] ? :done : :description)
       flash[:notice] = old_description + " has been changed to " + @task.description
       redirect_to list_path(@task.list)
     else
@@ -45,4 +46,8 @@ private
   def task_params
     params.require(:task).permit(:description, :done)
   end
+
+  # def formatted_flash
+  # or "helper methods"
+  # alternatively, class Flash for handling all Flash logic
 end
