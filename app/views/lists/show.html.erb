@@ -1,21 +1,53 @@
 <% content_for(:title, "Can You Not | List") %>
 
-<h2><%= @list.name %></h2>
+<h2>
+  <%= @list.name %> |
+  <%= link_to edit_list_path(@list) do %><i class="fa fa-cog"></i><% end %> |
+  <%= link_to list_path(@list), :data => {:confirm => "Ya sure?", :method => "delete"} do %><i class="fa fa-trash-o"></i><% end %>
+</h2>
 
-<h4><%= @list.description %></h4>
+<h4>
+  <%= @list.description %>
+</h4>
+
+<p>
+  <%= link_to new_list_task_path(@list) do %>
+    Add Task<i class="fa fa-lg fa-plus-square-o"></i>
+  <% end %>
+</p>
+
+<hr>
 
 <% if @list.tasks.any? %>
   <h5>Tasks:</h5>
 
-  <ul>
+  <%#= form_tag('/', :method => 'post') do%>
+    <ul>
+      <% @list.tasks.each do |task| %>
+        <li><%= task.description %> | Done? <%= task.done %> |
+          <%= link_to edit_list_task_path(@list, task) do %><i class="fa fa-cog"></i><% end %> |
+          <%= link_to list_task_path(@list, task), :data => {:confirm => "Ya sure?", :method => "delete"} do %><i class="fa fa-trash-o"></i><% end %>
+          <%= form_for [@list, task] do |f| %>
+            <%= f.hidden_field :done, :value => true %>
+            <%= f.submit "Done" %>
+          <% end %>
+        </li>
+        <%end%>
+    </ul>
+    <%#= submit_tag('Completed Tasks', :class=>'btn btn-success') %>
+    <%# end %>
+
+  <!-- <ul>
     <% @list.tasks.each do |task| %>
       <li>
         <%= task.description %> |
-        <%= link_to "Edit", edit_list_task_path(@list, task) %> |
-        <%= link_to "Delete", list_task_path(@list, task), :data => {:confirm => "Ya sure?", :method => "delete"} %>
+        Done: <%= task.done %> |
+        <%= check_box :task, :done, {}, true, false %> |
+        <%= link_to edit_list_task_path(@list, task) do %><i class="fa fa-cog"></i><% end %> |
+        <%= link_to list_task_path(@list, task), :data => {:confirm => "Ya sure?", :method => "delete"} do %><i class="fa fa-trash-o"></i><% end %>
       </li>
     <% end %>
-  </ul>
+  </ul> -->
 
 <% else %>
 
@@ -23,9 +55,6 @@
 
 <% end %>
 
-<p><%= link_to "Whatever, add a dumb task, or something", new_list_task_path(@list) %></p> 
-
-<p><%= link_to "Edit", edit_list_path(@list) %></p>
-<p><%= link_to "Delete", list_path(@list), :data => {:confirm => "Ya sure?", :method => "delete"} %></p>
+<hr>
 
 <p><%= link_to "Return to To-Don't Lists", lists_path %></p>
