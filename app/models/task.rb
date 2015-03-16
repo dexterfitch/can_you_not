@@ -3,6 +3,14 @@ class Task < ActiveRecord::Base
 
   validates :description, :presence => true
 
+  def self.done
+    where(done: true)
+  end
+
+  def self.not_done
+    where(done: false)
+  end
+
 
   # before_create :set_done_to_false
 
