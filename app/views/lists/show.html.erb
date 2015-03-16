@@ -18,7 +18,7 @@
 
 <hr>
 
-<% if @list.tasks.any? %>
+<% if @list.tasks.not_done.any? %>
   <h5>Incomplete Tasks:</h5>
 
   <ul>
@@ -43,7 +43,7 @@
 
 <hr>
 
-<% if @list.tasks.any? %>
+<% if @list.tasks.done.any? %>
   <h5>Complete Tasks:</h5>
 
   <ul>
@@ -58,8 +58,8 @@
       <%end%>
   </ul>
 
+  <hr>
 <% end %>
 
-<hr>
 
 <p><%= link_to "Return to To-Don't Lists", lists_path %></p>
