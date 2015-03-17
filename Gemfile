@@ -9,7 +9,6 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'rails_12factor'
 
 group :development do
   gem 'byebug'
@@ -25,4 +24,8 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
