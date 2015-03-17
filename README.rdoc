@@ -4,4 +4,4 @@ A little app based on a beginner's tutorial of the classic "To-Do" app in rails.
 
 ## Access
 
-Play with the app at https://fast-dusk-9224.herokuapp.com/
+Play with the app at https://vast-scrubland-2424.herokuapp.com/
